@@ -1,26 +1,44 @@
 Version 0.1:
 
 Upload files - DONE!
-Upload files via drag n drop
+Drag n drop an image file on the initial page
+Upload the dropped image
 Add a seal to the image
 
 
 
 Version 0.2:
 
-Make the initial page prettier
+Make the initial page presentable
+Change the page on file hover
+Change the page for "uploading"
 
 
 
 Version 0.3:
 
-Add text to the image
+Create an "about" page
 
 
 
 Version 0.4:
 
+Create a page for displaying the image
+Add a textbox for the user to enter some text
+Add text to the image
+
+
+
+Version 0.5:
+
 Text preview
+
+
+
+Version 0.6:
+
+Allow the user to change the text size
+Allow the user to change the text font
 
 
 
