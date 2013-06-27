@@ -4,12 +4,11 @@
 <head>
 	<title>Seal Generator</title>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+	<script type="text/javascript" src="{{ url_for('static', filename='dragdrop.js') }}"></script>
 </head>
 
 <body>
-	<div class="page">
-		{% block body %}{% endblock %}
-	</div>
+	{% block body %}{% endblock %}
 </body>
 
 </html>
