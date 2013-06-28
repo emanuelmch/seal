@@ -24,6 +24,7 @@ function DragDrop_init() {
 		this.className = '';
 
 		document.forms.fileUploading.reset();
+		document.forms.fileUploading.filename.value = event.dataTransfer.files[0].name;
 		
 		var formData = new FormData();
 		formData.append('file', event.dataTransfer.files[0]);
@@ -31,8 +32,8 @@ function DragDrop_init() {
 		xhr.open('POST', '/');
 		xhr.onload = function () {
 			if (xhr.status === 200) {
-				document.forms.fileUploading.submit();
 				console.log('OK');
+				document.forms.fileUploading.submit();
 			} else {
 				console.log('Something went wrong...');
 			}

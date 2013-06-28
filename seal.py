@@ -25,7 +25,6 @@ def process_image(filename):
 	newFilename = append_name(filename)
 	image = PythonMagick.Image(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 	imagesize = '%sx%s' % (image.columns() * 0.5, image.rows() * 0.5)
-	print 'imagesize = %s' % imagesize
 	seal = PythonMagick.Image(os.path.join(STATIC_FOLDER, 'seal.svg'))
 	seal.type = image.type
 	seal.transparent('#FFFFFF')
@@ -43,13 +42,17 @@ def home():
 		file = request.files.get('file')
 		if file and allowed_file(file.filename):
 			filename = secure_filename(file.filename)
-			print "********************************************"
-			print os.path.join(app.config['UPLOAD_FOLDER'], filename)
-			print "********************************************"
 			file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 			newFilename = process_image(filename)
-
 			return redirect(url_for('uploaded_file', filename=newFilename))
+
+		else:
+			filename = request.form['filename']
+			if filename and allowed_file(filename):
+				newFilename = append_name(filename)
+				return redirect(url_for('uploaded_file', filename=newFilename))
+				
+	return "Invalid file. You've been a naughty boy."
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
