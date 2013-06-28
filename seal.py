@@ -40,7 +40,7 @@ def home():
 	if request.method == 'GET':
 		return render_template('home.html')
 	else:
-		file = request.files['file']
+		file = request.files.get('file')
 		if file and allowed_file(file.filename):
 			filename = secure_filename(file.filename)
 			print "********************************************"
@@ -50,7 +50,6 @@ def home():
 			newFilename = process_image(filename)
 
 			return redirect(url_for('uploaded_file', filename=newFilename))
-			#return redirect(url_for('uploaded_file', filename=filename))
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
