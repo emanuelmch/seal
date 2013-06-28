@@ -23,9 +23,21 @@ function DragDrop_init() {
 		event.preventDefault && event.preventDefault();
 		this.className = '';
 
-		var files = event.dataTransfer.files;
-		document.forms.fileUploading.file.files = files;
-		document.forms.fileUploading.submit();
+		document.forms.fileUploading.reset();
+		
+		var formData = new FormData();
+		formData.append('file', event.dataTransfer.files[0]);
+		var xhr = new XMLHttpRequest();
+		xhr.open('POST', '/');
+		xhr.onload = function () {
+			if (xhr.status === 200) {
+				document.forms.fileUploading.submit();
+				console.log('OK');
+			} else {
+				console.log('Something went wrong...');
+			}
+		}
+		xhr.send(formData);
 
 		return false;
 	}
@@ -34,3 +46,4 @@ function DragDrop_init() {
 
 	console.log('Init OK');
 }
+
